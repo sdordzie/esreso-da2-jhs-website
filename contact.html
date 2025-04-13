@@ -5,47 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - ESRESO D/A 2 JHS</title>
     <style>
-        /* Reuse the same styles as about.html */
+        /* ===== Consistent Color Scheme ===== */
+        :root {
+            --primary: #5C4033;    /* Dark brown */
+            --secondary: #3D2B1F;  /* Darker brown */
+            --accent: #8B5A2B;     /* Light brown */
+            --light: #F5EDE4;      /* Cream */
+            --white: #FFFFFF;      /* White */
+        }
+        
+        /* ===== Base Styles ===== */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            color: #333;
+            color: var(--primary);
+            background-color: var(--white);
         }
-        header, nav, footer {
-            background: #006600;
-            color: white;
+        
+        /* ===== Header Styles ===== */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        /* ===== Navigation Styles ===== */
+        nav {
+            background: var(--secondary);
             padding: 1rem;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        nav {
-            background: #003300;
-            padding: 0.5rem;
-        }
+        
         nav a {
-            color: white;
-            margin: 0 10px;
+            color: var(--white);
+            margin: 0 1rem;
             text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
         }
+        
+        nav a:hover {
+            color: var(--light);
+        }
+        
+        /* ===== Content Styles ===== */
         .container {
-            padding: 20px;
-            max-width: 800px;
+            padding: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
-        .contact-info {
-            margin: 20px 0;
+        
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(92, 64, 51, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .contact-info p {
-            margin: 10px 0;
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
         }
-        .map {
-            margin: 20px 0;
+        
+        h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
         }
+        
+        /* ===== Contact Info Styles ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-card {
+            background: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+        
+        .contact-card h4 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+        
+        .contact-item {
+            margin-bottom: 0.75rem;
+        }
+        
+        .contact-item strong {
+            display: inline-block;
+            min-width: 100px;
+        }
+        
+        /* ===== Map Styles ===== */
+        .map-container {
+            margin: 2rem 0;
+        }
+        
         iframe {
             width: 100%;
-            height: 300px;
+            height: 400px;
             border: 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(92, 64, 51, 0.1);
+        }
+        
+        /* ===== Footer Styles ===== */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -54,26 +164,66 @@
         <h1>ESRESO D/A 2 JHS</h1>
         <p>Bosomtwe District, Ashanti Region</p>
     </header>
+    
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="academics.html">Academics</a>
         <a href="contact.html">Contact</a>
     </nav>
+    
     <div class="container">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <p><strong>Address:</strong> Esreso, Bosomtwe District, Ashanti Region, Ghana</p>
-            <p><strong>Headteacher:</strong> Mad. Eunice Amankwah Bimpeh</p>
-            <p><strong>Phone:</strong> +233 XX XXX XXXX</p>
-            <p><strong>Email:</strong> esresoda2jhs@gmail.com</p>
-        </div>
-        
-        <div class="map">
-            <h3>Location Map</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.123456789012!2d-1.2345678!3d6.7890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJOIDHCsDE0JzA0LjgiVw!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" allowfullscreen="" loading="lazy"></iframe>
+        <div class="card">
+            <h2>Contact Information</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4>School Address</h4>
+                    <div class="contact-item">
+                        <strong>Location:</strong> Esreso, Bosomtwe District
+                    </div>
+                    <div class="contact-item">
+                        <strong>Region:</strong> Ashanti Region, Ghana
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h4>Administration</h4>
+                    <div class="contact-item">
+                        <strong>Headmistress:</strong> Eunice Amankwah Bimpeh
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong> <a href="tel:+233244811497">+233 24 481 1497</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Asst. Head:</strong> Paul Nudowu
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong> <a href="tel:+233543686064">+233 54 368 6064</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h4>Academic Office</h4>
+                    <div class="contact-item">
+                        <strong>Academic Head:</strong> Marfo Kwadwo
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong> <a href="tel:+233242127540">+233 24 212 7540</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong> <a href="mailto:esresoda2jhs@gmail.com">esresoda2jhs@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <h3>Our Location</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.123456789012!2d-1.2345678!3d6.7890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJOIDHCsDE0JzA0LjgiVw!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
+    
     <footer>
         <p>&copy; 2024 ESRESO D/A 2 JHS. All rights reserved.</p>
     </footer>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Information - ESRESO D/A 2 JHS</title>
+    <style>
+        /* ===== Consistent Color Scheme ===== */
+        :root {
+            --primary: #5C4033;    /* Dark brown */
+            --secondary: #3D2B1F;  /* Darker brown */
+            --accent: #8B5A2B;     /* Light brown */
+            --light: #F5EDE4;      /* Cream */
+            --white: #FFFFFF;      /* White */
+        }
+        
+        /* ===== Base Styles ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: var(--white);
+        }
+        
+        /* ===== Header Styles ===== */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .logo {
+            height: 80px;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+        
+        /* ===== Navigation Styles ===== */
+        nav {
+            background: var(--secondary);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: var(--white);
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--light);
+        }
+        
+        /* ===== Content Styles ===== */
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(92, 64, 51, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+        }
+        
+        /* ===== Staff Table Styles ===== */
+        .staff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .staff-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem;
+            text-align: left;
+            position: sticky;
+            top: 0;
+        }
+        
+        .staff-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--light);
+            vertical-align: middle;
+        }
+        
+        .staff-table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        .staff-table tr:hover {
+            background-color: rgba(92, 64, 51, 0.05);
+        }
+        
+        .staff-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        
+        .staff-name-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin: 0.2rem 0;
+        }
+        
+        .contact-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        .contact-link::before {
+            font-size: 0.9rem;
+        }
+        
+        .email-link::before {
+            content: "✉";
+        }
+        
+        .phone-link::before {
+            content: "📞";
+        }
+        
+        .whatsapp-link::before {
+            content: "💬";
+        }
+        
+        /* ===== Department Styles ===== */
+        .department-section {
+            margin: 2rem 0;
+        }
+        
+        .search-container {
+            margin: 1rem 0;
+        }
+        
+        #staffSearch {
+            padding: 0.5rem;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+        }
+        
+        /* ===== Footer Styles ===== */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .staff-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .staff-img {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="School Logo" class="logo">
+        <h1>ESRESO D/A 2 JHS</h1>
+        <p>Bosomtwe District, Ashanti Region</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="staff.html">Staff</a>
+        <a href="academics.html">Academics</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Staff Information Directory</h2>
+            <p>Our dedicated team of 30 teachers and administrative staff are committed to providing quality education. Below is the complete staff directory:</p>
+            
+            <div class="search-container">
+                <input type="text" id="staffSearch" placeholder="Search staff by name, ID, or subject..." title="Type in a name">
+            </div>
+            
+            <div class="department-section">
+                <h3>Teaching Staff</h3>
+                <table class="staff-table" id="staffTable">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Staff Details</th>
+                            <th>Contact</th>
+                            <th>Teaching Level</th>
+                            <th>NTC Number</th>
+                            <th>Region/District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="staff-img" style="background-color: #e3f2fd;">MO</div>
+                            </td>
+                            <td>
+                                <div class="staff-name-container">
+                                    <strong>Mary Opoku</strong>
+                                </div>
+                                <div>ID: 1363561</div>
+                                <div><a href="mailto:maryopoku511@gmail.com" class="contact-link email-link">maryopoku511@gmail.com</a></div>
+                            </td>
+                            <td>
+                                <a href="tel:+233241740511" class="contact-link phone-link">0241740511</a><br>
+                                <a href="https://wa.me/233241740511" class="contact-link whatsapp-link">WhatsApp</a>
+                            </td>
+                            <td>JHS</td>
+                            <td>PT 009474/2018</td>
+                            <td>Ashanti/Bosomtwe</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="staff-img" style="background-color: #fff8e1;">LA</div>
+                            </td>
+                            <td>
+                                <div class="staff-name-container">
+                                    <strong>Lovia Acheampong</strong>
+                                </div>
+                                <div>ID: 819312</div>
+                                <div><a href="mailto:akuaacheampomaa250@gmail.com" class="contact-link email-link">akuaacheampomaa250@gmail.com</a></div>
+                            </td>
+                            <td>
+                                <a href="tel:+233245945530" class="contact-link phone-link">0245945530</a><br>
+                                <a href="https://wa.me/233245945530" class="contact-link whatsapp-link">WhatsApp</a>
+                            </td>
+                            <td>JHS</td>
+                            <td>PT/7178/2013</td>
+                            <td>Ashanti/Bosomtwe</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="staff-img" style="background-color: #f3e5f5;">CT</div>
+                            </td>
+                            <td>
+                                <div class="staff-name-container">
+                                    <strong>Collins Tuffour</strong>
+                                </div>
+                                <div>ID: 1526720</div>
+                                <div><a href="mailto:t.colynx@gmail.com" class="contact-link email-link">t.colynx@gmail.com</a></div>
+                            </td>
+                            <td>
+                                <a href="tel:+233559179900" class="contact-link phone-link">0559179900</a><br>
+                                <a href="https://wa.me/233559179900" class="contact-link whatsapp-link">WhatsApp</a>
+                            </td>
+                            <td>Level 4</td>
+                            <td>PT/006667/2020</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="staff-img" style="background-color: #e8f5e9;">EO</div>
+                            </td>
+                            <td>
+                                <div class="staff-name-container">
+                                    <strong>Eunice Osei-Agyare</strong>
+                                </div>
+                                <div>ID: 734781</div>
+                                <div><a href="mailto:euniceboakye432@gmail.com" class="contact-link email-link">euniceboakye432@gmail.com</a></div>
+                            </td>
+                            <td>
+                                <a href="tel:+233249607962" class="contact-link phone-link">0249607962</a><br>
+                                <a href="https://wa.me/233249607962" class="contact-link whatsapp-link">WhatsApp</a>
+                            </td>
+                            <td>JHS</td>
+                            <td>PT/008150/2011</td>
+                            <td>Ashanti/Bosomtwe</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="staff-img" style="background-color: #e0f7fa;">SA</div>
+                            </td>
+                            <td>
+                                <div class="staff-name-container">
+                                    <strong>Sethina Acheampong</strong>
+                                </div>
+                                <div>ID: 1515036</div>
+                                <div><a href="mailto:Sethinaacheampong8@gmail.com" class="contact-link email-link">Sethinaacheampong8@gmail.com</a></div>
+                            </td>
+                            <td>
+                                <a href="tel:+233541026498" class="contact-link phone-link">0541026498</a><br>
+                                <a href="https://wa.me/233541026498" class="contact-link whatsapp-link">WhatsApp</a>
+                            </td>
+                            <td>JHS</td>
+                            <td>PT/006190/2020</td>
+                            <td>-</td>
+                        </tr>
+                        <!-- Additional staff rows would follow the same pattern -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="department-section">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li><strong>School Phone:</strong> <a href="tel:+233244811497" class="contact-link phone-link">+233 24 481 1497</a> (Headmistress)</li>
+                    <li><strong>Email:</strong> <a href="mailto:esresod2jhs@gmail.com" class="contact-link email-link">esresod2jhs@gmail.com</a></li>
+                    <li><strong>Office Hours:</strong> Monday-Friday, 7:30am - 4:00pm</li>
+                    <li><strong>Best Time to Call:</strong> 9:00am - 2:00pm</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 ESRESO D/A 2 JHS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('staffSearch').addEventListener('keyup', function() {
+            const input = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#staffTable tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

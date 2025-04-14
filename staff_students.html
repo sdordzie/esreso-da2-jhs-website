@@ -1,0 +1,276 @@
+<!-- staff_students.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Students - ESRESO D/A 2 JHS</title>
+    <style>
+        :root {
+            --primary: #5C4033;
+            --secondary: #3D2B1F;
+            --accent: #8B5A2B;
+            --light: #F5EDE4;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--primary);
+            background-color: var(--white);
+        }
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 60px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .sidebar {
+            width: 250px;
+            background: var(--light);
+            height: calc(100vh - 70px);
+            position: fixed;
+            padding: 1.5rem;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: var(--accent);
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 1.5rem;
+        }
+        .students-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .class-selector {
+            margin-bottom: 1.5rem;
+        }
+        .class-selector select {
+            padding: 0.5rem;
+            border: 1px solid var(--light);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .students-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .students-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--light);
+        }
+        .students-table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+        .students-table tr:hover {
+            background-color: rgba(92, 64, 51, 0.05);
+        }
+        .student-actions a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+        .student-actions a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .students-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="School Logo" class="logo">
+        <div class="user-info">
+            <div class="user-avatar">MO</div>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
+    
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="staff_dashboard.html">Dashboard</a></li>
+            <li><a href="staff_messages.html">Messages</a></li>
+            <li><a href="#" class="active">My Students</a></li>
+            <li><a href="staff_classes.html">My Classes</a></li>
+            <li><a href="staff_profile.html">My Profile</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="students-header">
+            <h2>My Students</h2>
+            <button class="btn">Send Class Message</button>
+        </div>
+        
+        <div class="class-selector">
+            <select id="classFilter">
+                <option value="all">All Classes</option>
+                <option value="jhs1a">JHS 1A</option>
+                <option value="jhs2a">JHS 2A</option>
+                <option value="jhs3a">JHS 3A</option>
+            </select>
+        </div>
+        
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Parent Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ST2023001</td>
+                    <td>Kofi Mensah</td>
+                    <td>JHS 2A</td>
+                    <td>0241234567 (Mr. Mensah)</td>
+                    <td class="student-actions">
+                        <a href="#">Message</a>
+                        <a href="#">View Progress</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ST2023002</td>
+                    <td>Ama Serwaa</td>
+                    <td>JHS 2A</td>
+                    <td>0207654321 (Mrs. Serwaa)</td>
+                    <td class="student-actions">
+                        <a href="#">Message</a>
+                        <a href="#">View Progress</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ST2023003</td>
+                    <td>Kwame Asante</td>
+                    <td>JHS 2A</td>
+                    <td>0543219876 (Mr. Asante)</td>
+                    <td class="student-actions">
+                        <a href="#">Message</a>
+                        <a href="#">View Progress</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ST2023004</td>
+                    <td>Esi Nyamekye</td>
+                    <td>JHS 1A</td>
+                    <td>0276543210 (Mrs. Nyamekye)</td>
+                    <td class="student-actions">
+                        <a href="#">Message</a>
+                        <a href="#">View Progress</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ST2023005</td>
+                    <td>Yaw Boateng</td>
+                    <td>JHS 3A</td>
+                    <td>0249876543 (Mr. Boateng)</td>
+                    <td class="student-actions">
+                        <a href="#">Message</a>
+                        <a href="#">View Progress</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Get staff ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const staffId = urlParams.get('id');
+        
+        // In a real implementation, you would fetch student data based on staff ID
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            window.location.href = 'staff_login.html';
+        });
+        
+        // Class filter functionality
+        document.getElementById('classFilter').addEventListener('change', function() {
+            const selectedClass = this.value;
+            // In a real implementation, you would filter the student list
+        });
+    </script>
+</body>
+</html>

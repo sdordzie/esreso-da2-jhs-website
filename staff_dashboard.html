@@ -1,4 +1,3 @@
-<!-- staff_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,33 +11,45 @@
             --accent: #8B5A2B;
             --light: #F5EDE4;
             --white: #FFFFFF;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #F44336;
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             color: var(--primary);
-            background-color: var(--white);
+            background-color: #f9f9f9;
         }
+        
         header {
             background: var(--primary);
             color: var(--white);
-            padding: 1rem 1.5rem;
+            padding: 0.8rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+        
         .logo {
-            height: 60px;
+            height: 50px;
         }
+        
         .user-info {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+        
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background-color: var(--light);
             display: flex;
@@ -46,129 +57,396 @@
             justify-content: center;
             font-weight: bold;
             color: var(--primary);
+            border: 2px solid var(--white);
         }
+        
         .logout-btn {
-            background: none;
+            background: rgba(255,255,255,0.1);
             border: none;
             color: var(--white);
             cursor: pointer;
             font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
         }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
         .sidebar {
-            width: 250px;
-            background: var(--light);
-            height: calc(100vh - 70px);
+            width: 260px;
+            background: var(--white);
+            height: calc(100vh - 66px);
             position: fixed;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            border-right: 1px solid rgba(92, 64, 51, 0.1);
+            overflow-y: auto;
         }
+        
         .sidebar-nav {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+        
         .sidebar-nav li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
+        
         .sidebar-nav a {
-            display: block;
-            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
             color: var(--primary);
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 500;
+            transition: all 0.2s;
         }
-        .sidebar-nav a:hover, .sidebar-nav a.active {
+        
+        .sidebar-nav a:hover {
+            background: rgba(92, 64, 51, 0.05);
+        }
+        
+        .sidebar-nav a.active {
             background: var(--accent);
             color: white;
         }
-        .main-content {
-            margin-left: 250px;
-            padding: 1.5rem;
+        
+        .sidebar-nav i {
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
         }
+        
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            min-height: calc(100vh - 66px);
+        }
+        
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
+        
         .welcome-message h2 {
             margin: 0;
             color: var(--secondary);
+            font-size: 1.8rem;
         }
+        
+        .welcome-message p {
+            margin: 0.3rem 0 0;
+            color: #666;
+        }
+        
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card .stat-title {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stat-card .stat-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .stat-link i {
+            margin-left: 0.3rem;
+            transition: transform 0.2s;
+        }
+        
+        .stat-link:hover i {
+            transform: translateX(3px);
+        }
+        
+        .recent-activity {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-        .stat-card {
-            background: var(--light);
+        
+        .activity-card {
+            background: var(--white);
             padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
+        
+        .activity-card h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-card h3 i {
+            margin-right: 0.7rem;
             color: var(--accent);
-            margin: 0.5rem 0;
         }
-        .recent-messages {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
+        
         .message {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(92, 64, 51, 0.1);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(92, 64, 51, 0.08);
         }
+        
         .message:last-child {
             border-bottom: none;
         }
+        
         .message-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
+            align-items: center;
         }
+        
         .message-sender {
             font-weight: 600;
+            color: var(--primary);
         }
+        
         .message-date {
-            color: #777;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.85rem;
         }
+        
+        .message-content {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .message-priority {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .priority-high {
+            background-color: #FFEBEE;
+            color: var(--danger);
+        }
+        
+        .priority-medium {
+            background-color: #FFF8E1;
+            color: var(--warning);
+        }
+        
+        .upcoming-events {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .event {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(92, 64, 51, 0.08);
+            display: flex;
+        }
+        
+        .event:last-child {
+            border-bottom: none;
+        }
+        
+        .event-date {
+            background: var(--light);
+            color: var(--primary);
+            border-radius: 6px;
+            padding: 0.5rem;
+            min-width: 50px;
+            text-align: center;
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+        
+        .event-date .day {
+            font-size: 1.2rem;
+            display: block;
+            line-height: 1;
+        }
+        
+        .event-date .month {
+            font-size: 0.7rem;
+            display: block;
+            text-transform: uppercase;
+        }
+        
+        .event-details {
+            flex: 1;
+        }
+        
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .event-time {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
         .btn {
             background: var(--accent);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(92, 64, 51, 0.2);
         }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
         .btn:hover {
             background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(92, 64, 51, 0.3);
         }
+        
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-action {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(92, 64, 51, 0.1);
+        }
+        
+        .quick-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        
+        .quick-action i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-action p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 1200px) {
+            .recent-activity {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 220px;
+                padding: 1rem 0.8rem;
+            }
+            .main-content {
+                margin-left: 220px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
                 height: auto;
                 position: relative;
+                display: none;
+            }
+            .sidebar.active {
+                display: block;
             }
             .main-content {
                 margin-left: 0;
             }
-            .stats-container {
-                grid-template-columns: 1fr;
+            .quick-actions {
+                flex-wrap: wrap;
+            }
+            .quick-action {
+                min-width: calc(50% - 0.5rem);
             }
         }
+        
+        /* Font Awesome icons (would be replaced with actual FA link in production) */
+        .fas {
+            font-style: normal;
+            font-family: Arial;
+        }
     </style>
+    <!-- In production, you would link to actual Font Awesome -->
 </head>
 <body>
     <header>
-        <img src="images/logo.png" alt="School Logo" class="logo">
+        <img src="../images/logo.png" alt="School Logo" class="logo">
         <div class="user-info">
             <div class="user-avatar">MO</div>
             <button class="logout-btn">Logout</button>
@@ -177,63 +455,130 @@
     
     <div class="sidebar">
         <ul class="sidebar-nav">
-            <li><a href="#" class="active">Dashboard</a></li>
-            <li><a href="staff_messages.html">Messages</a></li>
-            <li><a href="staff_students.html">My Students</a></li>
-            <li><a href="staff_classes.html">My Classes</a></li>
-            <li><a href="staff_profile.html">My Profile</a></li>
+            <li><a href="#" class="active"><i class="fas">📊</i> Dashboard</a></li>
+            <li><a href="staff_messages.html"><i class="fas">✉️</i> Messages <span class="badge">5</span></a></li>
+            <li><a href="staff_students.html"><i class="fas">👨‍🎓</i> My Students</a></li>
+            <li><a href="staff_classes.html"><i class="fas">🏫</i> My Classes</a></li>
+            <li><a href="staff_attendance.html"><i class="fas">✓</i> Attendance</a></li>
+            <li><a href="staff_assignment.html"><i class="fas">📝</i> Assignments</a></li>
+            <li><a href="staff_profile.html"><i class="fas">👤</i> My Profile</a></li>
+            <li><a href="staff_settings.html"><i class="fas">⚙️</i> Settings</a></li>
         </ul>
     </div>
     
     <div class="main-content">
         <div class="dashboard-header">
             <div class="welcome-message">
-                <h2>Welcome, Mary Opoku</h2>
-                <p>English Department | Staff ID: 1363561</p>
+                <h2>Welcome back, Mary Opoku</h2>
+                <p>Here's what's happening today at ESRESO D/A 2 JHS</p>
             </div>
-            <button class="btn">New Announcement</button>
+            <button class="btn"><i class="fas">📢</i> New Announcement</button>
+        </div>
+        
+        <div class="quick-actions">
+            <div class="quick-action">
+                <i class="fas">📝</i>
+                <p>Record Attendance</p>
+            </div>
+            <div class="quick-action">
+                <i class="fas">📚</i>
+                <p>Create Assignment</p>
+            </div>
+            <div class="quick-action">
+                <i class="fas">👥</i>
+                <p>Class Reports</p>
+            </div>
+            <div class="quick-action">
+                <i class="fas">📅</i>
+                <p>Add Event</p>
+            </div>
         </div>
         
         <div class="stats-container">
             <div class="stat-card">
-                <div>Unread Messages</div>
+                <div class="stat-title"><i class="fas">✉️</i> Unread Messages</div>
                 <div class="stat-number">5</div>
-                <div><a href="staff_messages.html">View Messages</a></div>
+                <a href="staff_messages.html" class="stat-link">View Messages <i class="fas">→</i></a>
             </div>
             <div class="stat-card">
-                <div>Students</div>
+                <div class="stat-title"><i class="fas">👨‍🎓</i> Total Students</div>
                 <div class="stat-number">90</div>
-                <div><a href="staff_students.html">View Students</a></div>
+                <a href="staff_students.html" class="stat-link">View Students <i class="fas">→</i></a>
             </div>
             <div class="stat-card">
-                <div>Classes</div>
+                <div class="stat-title"><i class="fas">📚</i> Active Classes</div>
                 <div class="stat-number">3</div>
-                <div><a href="staff_classes.html">View Classes</a></div>
+                <a href="staff_classes.html" class="stat-link">View Classes <i class="fas">→</i></a>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title"><i class="fas">📝</i> Pending Assignments</div>
+                <div class="stat-number">24</div>
+                <a href="staff_assignment.html" class="stat-link">Grade Now <i class="fas">→</i></a>
             </div>
         </div>
         
-        <div class="recent-messages">
-            <h3>Recent Messages</h3>
-            <div class="message">
-                <div class="message-header">
-                    <span class="message-sender">Kofi Mensah (JHS 2A)</span>
-                    <span class="message-date">Today, 10:30 AM</span>
+        <div class="recent-activity">
+            <div class="activity-card">
+                <h3><i class="fas">✉️</i> Recent Messages</h3>
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-sender">Kofi Mensah (JHS 2A) <span class="message-priority priority-high">High</span></span>
+                        <span class="message-date">Today, 10:30 AM</span>
+                    </div>
+                    <div class="message-content">Madam, I need urgent help with the essay assignment due tomorrow. Can we meet after school?</div>
                 </div>
-                <div class="message-content">Madam, I need help with the essay assignment. Can we meet after school?</div>
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-sender">Mr. Kwame Mensah (Math Dept.)</span>
+                        <span class="message-date">Yesterday, 3:45 PM</span>
+                    </div>
+                    <div class="message-content">Reminder: Department meeting tomorrow at 2 PM in the staff room. Bring your curriculum reports.</div>
+                </div>
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-sender">Mad. Eunice (Headmistress) <span class="message-priority priority-medium">Medium</span></span>
+                        <span class="message-date">May 20, 2:15 PM</span>
+                    </div>
+                    <div class="message-content">Term reports submission deadline extended to Friday. Please ensure all grades are entered.</div>
+                </div>
+                <a href="staff_messages.html" class="stat-link">View all messages <i class="fas">→</i></a>
             </div>
-            <div class="message">
-                <div class="message-header">
-                    <span class="message-sender">Mr. Kwame Mensah (Math Dept.)</span>
-                    <span class="message-date">Yesterday, 3:45 PM</span>
-                </div>
-                <div class="message-content">Reminder about our department meeting tomorrow at 2 PM.</div>
-            </div>
-            <div class="message">
-                <div class="message-header">
-                    <span class="message-sender">Mad. Eunice (Headmistress)</span>
-                    <span class="message-date">May 20, 2:15 PM</span>
-                </div>
-                <div class="message-content">Please submit your term reports by Friday.</div>
+            
+            <div class="activity-card">
+                <h3><i class="fas">📅</i> Upcoming Events</h3>
+                <ul class="upcoming-events">
+                    <li class="event">
+                        <div class="event-date">
+                            <span class="day">24</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">Department Meeting</div>
+                            <div class="event-time">2:00 PM - Staff Room</div>
+                        </div>
+                    </li>
+                    <li class="event">
+                        <div class="event-date">
+                            <span class="day">27</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">Term Reports Deadline</div>
+                            <div class="event-time">All Day</div>
+                        </div>
+                    </li>
+                    <li class="event">
+                        <div class="event-date">
+                            <span class="day">30</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">Parent-Teacher Conference</div>
+                            <div class="event-time">9:00 AM - 3:00 PM</div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="#" class="stat-link">View calendar <i class="fas">→</i></a>
             </div>
         </div>
     </div>
@@ -245,8 +590,57 @@
         
         // In a real implementation, you would fetch staff data based on ID
         document.querySelector('.logout-btn').addEventListener('click', function() {
-            window.location.href = 'staff_login.html';
+            // Clear session and redirect
+            localStorage.removeItem('staffAuthToken');
+            window.location.href = '../staff_login.html';
         });
+        
+        // Quick action buttons
+        document.querySelectorAll('.quick-action').forEach(action => {
+            action.addEventListener('click', function() {
+                const actionText = this.querySelector('p').textContent;
+                switch(actionText) {
+                    case 'Record Attendance':
+                        window.location.href = 'staff_attendance.html';
+                        break;
+                    case 'Create Assignment':
+                        window.location.href = 'staff_assignment.html';
+                        break;
+                    case 'Class Reports':
+                        window.location.href = 'staff_reports.html';
+                        break;
+                    case 'Add Event':
+                        window.location.href = 'staff_calendar.html';
+                        break;
+                }
+            });
+        });
+        
+        // Mobile menu toggle (would be implemented in production)
+        const mobileMenuToggle = document.createElement('button');
+        mobileMenuToggle.innerHTML = '☰';
+        mobileMenuToggle.style.position = 'fixed';
+        mobileMenuToggle.style.top = '1rem';
+        mobileMenuToggle.style.right = '1rem';
+        mobileMenuToggle.style.zIndex = '1000';
+        mobileMenuToggle.style.display = 'none';
+        mobileMenuToggle.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        document.body.appendChild(mobileMenuToggle);
+        
+        function checkMobile() {
+            if (window.innerWidth <= 768) {
+                mobileMenuToggle.style.display = 'block';
+                document.querySelector('.sidebar').classList.remove('active');
+            } else {
+                mobileMenuToggle.style.display = 'none';
+                document.querySelector('.sidebar').classList.add('active');
+            }
+        }
+        
+        window.addEventListener('resize', checkMobile);
+        checkMobile();
     </script>
 </body>
 </html>

@@ -1,0 +1,312 @@
+<!-- staff_messages.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - ESRESO D/A 2 JHS</title>
+    <style>
+        :root {
+            --primary: #5C4033;
+            --secondary: #3D2B1F;
+            --accent: #8B5A2B;
+            --light: #F5EDE4;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--primary);
+            background-color: var(--white);
+        }
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 60px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .sidebar {
+            width: 250px;
+            background: var(--light);
+            height: calc(100vh - 70px);
+            position: fixed;
+            padding: 1.5rem;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: var(--accent);
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 1.5rem;
+        }
+        .messages-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .messages-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            height: calc(100vh - 180px);
+        }
+        .message-list {
+            background: var(--light);
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+        .message-preview {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(92, 64, 51, 0.1);
+            cursor: pointer;
+        }
+        .message-preview:hover {
+            background: rgba(92, 64, 51, 0.05);
+        }
+        .message-preview.unread {
+            font-weight: 600;
+        }
+        .message-preview-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .message-preview-sender {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .message-preview-date {
+            color: #777;
+            font-size: 0.8rem;
+        }
+        .message-preview-content {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        .message-detail {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        .message-detail-header {
+            border-bottom: 1px solid rgba(92, 64, 51, 0.1);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .message-detail-sender {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .message-detail-subject {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .message-detail-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .message-detail-content {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .reply-form {
+            margin-top: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light);
+            border-radius: 4px;
+            font-family: inherit;
+            min-height: 120px;
+        }
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: var(--secondary);
+        }
+        .btn-secondary {
+            background: #777;
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .messages-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="School Logo" class="logo">
+        <div class="user-info">
+            <div class="user-avatar">MO</div>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
+    
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="staff_dashboard.html">Dashboard</a></li>
+            <li><a href="#" class="active">Messages</a></li>
+            <li><a href="staff_students.html">My Students</a></li>
+            <li><a href="staff_classes.html">My Classes</a></li>
+            <li><a href="staff_profile.html">My Profile</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="messages-header">
+            <h2>Messages</h2>
+            <button class="btn">New Message</button>
+        </div>
+        
+        <div class="messages-container">
+            <div class="message-list">
+                <div class="message-preview unread">
+                    <div class="message-preview-header">
+                        <div class="message-preview-sender">Kofi Mensah (JHS 2A)</div>
+                        <div class="message-preview-date">Today, 10:30 AM</div>
+                    </div>
+                    <div class="message-preview-content">Madam, I need help with the essay assignment. Can we meet after school?</div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-preview-header">
+                        <div class="message-preview-sender">Mr. Kwame Mensah (Math Dept.)</div>
+                        <div class="message-preview-date">Yesterday, 3:45 PM</div>
+                    </div>
+                    <div class="message-preview-content">Reminder about our department meeting tomorrow at 2 PM.</div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-preview-header">
+                        <div class="message-preview-sender">Mad. Eunice (Headmistress)</div>
+                        <div class="message-preview-date">May 20, 2:15 PM</div>
+                    </div>
+                    <div class="message-preview-content">Please submit your term reports by Friday.</div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-preview-header">
+                        <div class="message-preview-sender">Ama Serwaa (Parent of JHS 1B)</div>
+                        <div class="message-preview-date">May 18, 9:30 AM</div>
+                    </div>
+                    <div class="message-preview-content">Good morning Madam, I wanted to inquire about my daughter's progress in English...</div>
+                </div>
+            </div>
+            
+            <div class="message-detail">
+                <div class="message-detail-header">
+                    <div class="message-detail-sender">Kofi Mensah (JHS 2A)</div>
+                    <div class="message-detail-subject">Help with Essay Assignment</div>
+                    <div class="message-detail-date">Today, 10:30 AM</div>
+                </div>
+                <div class="message-detail-content">
+                    <p>Dear Madam Opoku,</p>
+                    <p>I'm having difficulty with the essay assignment on "The Importance of Education." I'm not sure how to structure my arguments and would appreciate some guidance.</p>
+                    <p>Would it be possible to meet after school tomorrow to discuss? I'm available from 2:30 PM onwards.</p>
+                    <p>Thank you,<br>Kofi Mensah</p>
+                </div>
+                <div class="reply-form">
+                    <div class="form-group">
+                        <textarea placeholder="Type your reply here..."></textarea>
+                    </div>
+                    <button class="btn">Send Reply</button>
+                    <button class="btn btn-secondary">Mark as Read</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get staff ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const staffId = urlParams.get('id');
+        
+        // In a real implementation, you would fetch messages based on staff ID
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            window.location.href = 'staff_login.html';
+        });
+        
+        // Message preview click handler
+        document.querySelectorAll('.message-preview').forEach(preview => {
+            preview.addEventListener('click', function() {
+                // In a real implementation, you would load the selected message
+                document.querySelectorAll('.message-preview').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

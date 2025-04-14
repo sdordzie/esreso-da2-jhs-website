@@ -1,0 +1,252 @@
+<!-- staff_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard - ESRESO D/A 2 JHS</title>
+    <style>
+        :root {
+            --primary: #5C4033;
+            --secondary: #3D2B1F;
+            --accent: #8B5A2B;
+            --light: #F5EDE4;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--primary);
+            background-color: var(--white);
+        }
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 60px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .sidebar {
+            width: 250px;
+            background: var(--light);
+            height: calc(100vh - 70px);
+            position: fixed;
+            padding: 1.5rem;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: var(--accent);
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 1.5rem;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .welcome-message h2 {
+            margin: 0;
+            color: var(--secondary);
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        .recent-messages {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .message {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(92, 64, 51, 0.1);
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .message-sender {
+            font-weight: 600;
+        }
+        .message-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="School Logo" class="logo">
+        <div class="user-info">
+            <div class="user-avatar">MO</div>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
+    
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="staff_messages.html">Messages</a></li>
+            <li><a href="staff_students.html">My Students</a></li>
+            <li><a href="staff_classes.html">My Classes</a></li>
+            <li><a href="staff_profile.html">My Profile</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="dashboard-header">
+            <div class="welcome-message">
+                <h2>Welcome, Mary Opoku</h2>
+                <p>English Department | Staff ID: 1363561</p>
+            </div>
+            <button class="btn">New Announcement</button>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <div>Unread Messages</div>
+                <div class="stat-number">5</div>
+                <div><a href="staff_messages.html">View Messages</a></div>
+            </div>
+            <div class="stat-card">
+                <div>Students</div>
+                <div class="stat-number">90</div>
+                <div><a href="staff_students.html">View Students</a></div>
+            </div>
+            <div class="stat-card">
+                <div>Classes</div>
+                <div class="stat-number">3</div>
+                <div><a href="staff_classes.html">View Classes</a></div>
+            </div>
+        </div>
+        
+        <div class="recent-messages">
+            <h3>Recent Messages</h3>
+            <div class="message">
+                <div class="message-header">
+                    <span class="message-sender">Kofi Mensah (JHS 2A)</span>
+                    <span class="message-date">Today, 10:30 AM</span>
+                </div>
+                <div class="message-content">Madam, I need help with the essay assignment. Can we meet after school?</div>
+            </div>
+            <div class="message">
+                <div class="message-header">
+                    <span class="message-sender">Mr. Kwame Mensah (Math Dept.)</span>
+                    <span class="message-date">Yesterday, 3:45 PM</span>
+                </div>
+                <div class="message-content">Reminder about our department meeting tomorrow at 2 PM.</div>
+            </div>
+            <div class="message">
+                <div class="message-header">
+                    <span class="message-sender">Mad. Eunice (Headmistress)</span>
+                    <span class="message-date">May 20, 2:15 PM</span>
+                </div>
+                <div class="message-content">Please submit your term reports by Friday.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get staff ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const staffId = urlParams.get('id');
+        
+        // In a real implementation, you would fetch staff data based on ID
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            window.location.href = 'staff_login.html';
+        });
+    </script>
+</body>
+</html>

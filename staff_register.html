@@ -1,0 +1,168 @@
+<!-- staff_register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Registration - ESRESO D/A 2 JHS</title>
+    <style>
+        :root {
+            --primary: #5C4033;
+            --secondary: #3D2B1F;
+            --accent: #8B5A2B;
+            --light: #F5EDE4;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .register-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(92, 64, 51, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .register-header img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: var(--secondary);
+        }
+        .register-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <img src="images/logo.png" alt="School Logo">
+            <h2>Staff Registration</h2>
+            <p>Create your staff account</p>
+        </div>
+        <form id="registerForm">
+            <div class="two-columns">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="staffId">Staff ID</label>
+                <input type="text" id="staffId" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" required>
+                    <option value="">Select department</option>
+                    <option value="english">English</option>
+                    <option value="math">Mathematics</option>
+                    <option value="science">Science</option>
+                    <option value="social">Social Studies</option>
+                    <option value="ict">ICT</option>
+                    <option value="arts">Creative Arts</option>
+                    <option value="admin">Administration</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+            
+            <div class="two-columns">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <div class="register-footer">
+            <p>Already have an account? <a href="staff_login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real implementation, you would send this data to a server
+            // For demo purposes, we'll redirect to login
+            alert('Registration successful! Please login with your credentials.');
+            window.location.href = 'staff_login.html';
+        });
+    </script>
+</body>
+</html>

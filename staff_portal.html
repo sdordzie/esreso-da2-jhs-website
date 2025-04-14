@@ -100,7 +100,43 @@
         section {
             padding: 20px;
         }
+    /* Staff Portal Cards */
+.portal-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.portal-card {
+    background: var(--light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary);
+    transition: transform 0.3s;
+    border: 1px solid var(--accent);
+}
+
+.portal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(92, 64, 51, 0.1);
+}
+
+.portal-info {
+    background: var(--light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portal-options {
+        grid-template-columns: 1fr;
     }
+}
 </style>
 </head>
 <body>
